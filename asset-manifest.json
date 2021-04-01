@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Form-Validate-REACT/static/css/main.78b06cca.chunk.css",
-    "main.js": "/Form-Validate-REACT/static/js/main.ffff9455.chunk.js",
-    "main.js.map": "/Form-Validate-REACT/static/js/main.ffff9455.chunk.js.map",
+    "main.js": "/Form-Validate-REACT/static/js/main.810d5667.chunk.js",
+    "main.js.map": "/Form-Validate-REACT/static/js/main.810d5667.chunk.js.map",
     "runtime-main.js": "/Form-Validate-REACT/static/js/runtime-main.1ee4af41.js",
     "runtime-main.js.map": "/Form-Validate-REACT/static/js/runtime-main.1ee4af41.js.map",
     "static/js/2.dd8342d8.chunk.js": "/Form-Validate-REACT/static/js/2.dd8342d8.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.1ee4af41.js",
     "static/js/2.dd8342d8.chunk.js",
     "static/css/main.78b06cca.chunk.css",
-    "static/js/main.ffff9455.chunk.js"
+    "static/js/main.810d5667.chunk.js"
   ]
 }
