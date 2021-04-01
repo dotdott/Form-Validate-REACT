@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { AccountContext } from './contexts/AccountContext'
 import { useHistory } from 'react-router-dom'
+import * as ROUTES from './constants/routes';
 
 export default function LandingPage() {
     const { SignOut, user } = useContext(AccountContext);
@@ -9,7 +10,7 @@ export default function LandingPage() {
     async function Logout(){
         await SignOut();
 
-        history.push('/login');
+        history.push(ROUTES.SIGN_IN);
     }
 
     return (
