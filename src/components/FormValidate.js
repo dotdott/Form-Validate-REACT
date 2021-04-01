@@ -2,6 +2,11 @@ import React from 'react';
 
 const FormValidate = inputValues => {
     const errors = {}
+
+    
+    if(!inputValues.username){
+        errors.name = 'Enter a username';
+    }
     
     if(!inputValues.email){
         errors.email = 'Enter a email';

@@ -13,14 +13,16 @@ export default function LandingPage() {
     }
 
     return (
-        <div>
-        {user ? (
-           <p>Hello {user.email} </p>
+        <div className="App">
+            <h1>HomePage</h1>
 
-        ) : (
-            <p>Hello, stranger.</p>
-        )}
-        <button onClick={Logout}>Sign out</button>
+            <div className="form-container">
+                <p className="greetings">
+                    Hello, {user.displayName}.
+                </p>
+
+                <button onClick={Logout}>Logout</button>
+            </div>
         </div>
     )
 }

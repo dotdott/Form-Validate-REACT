@@ -5,17 +5,20 @@ import SignUp from './components/SignUp';
 import LandingPage from './components/LandingPage';
 import AccountProvider from './components/contexts/AccountContext';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import * as ROUTES from './components/constants/routes';
 import SignIn from './components/SignIn';
+import PrivateRoute, { PrivateLogin } from './components/UnAuthenticatedRoute';
 
 function App() {
     return (
         <AccountProvider>
         <Router>
-                <Route exact path={ROUTES.LANDING} component={LandingPage} />
+            <Switch>
+                <PrivateRoute exact path={ROUTES.LANDING} component={LandingPage} />
+                <PrivateLogin path={ROUTES.SIGN_IN} component={SignIn} />
                 <Route path={ROUTES.SIGN_UP} component={SignUp} />
-                <Route path={ROUTES.SIGN_IN} component={SignIn} />
+            </Switch>
         </Router>
         </AccountProvider>
     )

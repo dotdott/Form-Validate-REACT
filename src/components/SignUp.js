@@ -6,6 +6,7 @@ import * as ROUTES from './constants/routes';
 
 const Form = () => {
     const [inputValues, setInputValues] = useState({
+        username: '',
         email: '',
         password: '',
         password2: '',
@@ -16,10 +17,12 @@ const Form = () => {
     const [errors, setErrors] = useState({});
     
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const [checkbox, setCheckbox] = useState(false);
 
     const [sucessMessage, setSucessMessage] = useState(false);
+
 
     const { SignUp } = useContext(AccountContext);
 
@@ -29,8 +32,9 @@ const Form = () => {
         setErrors(FormValidate(inputValues));
 
         try {
-            if(Object.keys(errors).length === 0 && isSubmitting === true && checkbox === true){
-                await SignUp(inputValues.email, inputValues.password);
+            if(Object.keys(errors).length === 0 && isSubmitting === true && checkbox === true && isSubmitted === false){
+                await SignUp(inputValues.email, inputValues.password, inputValues.username);
+                setIsSubmitted(true)
             }
         } catch (err) {
             if(err.code === "auth/weak-password"){
@@ -44,7 +48,6 @@ const Form = () => {
                 })
             }
         }
-        
         setIsSubmitting(true);
     }
 
@@ -59,8 +62,9 @@ const Form = () => {
 
     
     useEffect(() => {
-        if(Object.keys(errors).length === 0 && isSubmitting === true && checkbox === true){
+        if(Object.keys(errors).length === 0 && isSubmitting === true && checkbox === true && isSubmitted === true){
             setInputValues({
+                username: '',
                 email: '',
                 password: '',
                 password2: '',
@@ -71,6 +75,7 @@ const Form = () => {
             setSucessMessage(true);
             setCheckbox(false);
             setIsSubmitting(false);
+            setIsSubmitted(false);
             
             document.querySelector('#form-validate').reset();
 
@@ -88,6 +93,16 @@ const Form = () => {
                         <span onClick={() => setSucessMessage(false)}>X</span>
                         </h1>
                     </div>
+                        <input 
+                        type="text" 
+                        name="username" 
+                        id="username" 
+                        className="username" 
+                        placeholder="Username"
+                        onChange={handleChanges}                        
+                        />
+                        {errors.name && <p>{errors.name}</p>}
+
                         <input 
                             type="email" 
                             name="email" 
