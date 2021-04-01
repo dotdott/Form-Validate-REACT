@@ -9,7 +9,7 @@ export default function LandingPage() {
     async function Logout(){
         await SignOut();
 
-        history.push('/signin');
+        history.push('/login');
     }
 
     return (
