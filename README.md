@@ -14,3 +14,4 @@
 - React.
 - React Router.
 - Firebase.
+- Typescript.
