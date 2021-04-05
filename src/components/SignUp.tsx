@@ -1,8 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, FormHTMLAttributes } from 'react';
 import { AccountContext } from './contexts/AccountContext';
 import FormValidate from './FormValidate';
 import { Link } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
+
+interface ErrorsPropsData {
+    email?: string;
+    password?: string;
+    password2?: string;
+    name?: string;
+    weakpass?: string;
+    inUseEmail?: string;
+}
 
 const Form = () => {
     const [inputValues, setInputValues] = useState({
@@ -14,7 +23,7 @@ const Form = () => {
         inUseEmail: ''
     })
 
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState<ErrorsPropsData>({} as ErrorsPropsData);
     
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -26,7 +35,7 @@ const Form = () => {
 
     const { SignUp } = useContext(AccountContext);
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
         setErrors(FormValidate(inputValues));
@@ -51,7 +60,7 @@ const Form = () => {
         setIsSubmitting(true);
     }
 
-    const handleChanges = e => {
+    const handleChanges = (e: {target: HTMLInputElement}) => {
         const {name, value} = e.target;
 
         setInputValues({
@@ -77,8 +86,14 @@ const Form = () => {
             setIsSubmitting(false);
             setIsSubmitted(false);
             
-            document.querySelector('#form-validate').reset();
-
+            setInputValues({
+                username: '',
+                email: '',
+                password: '',
+                password2: '',
+                weakpass: '',
+                inUseEmail: ''
+            })
         }
     }, [errors]);
 
@@ -86,7 +101,7 @@ const Form = () => {
         <div className="App">
             <h1>Register form</h1>
             <div className="form-container">
-                <form onSubmit={handleSubmit} autoComplete="off" id="form-validate" noValidate>
+                <form onSubmit={handleSubmit} autoComplete="off" noValidate>
                     <div className={sucessMessage ? 'modal active' : 'modal'}> 
                         <h1>
                         Register  with sucess!

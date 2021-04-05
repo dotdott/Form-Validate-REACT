@@ -1,7 +1,21 @@
 import React from 'react';
 
-const FormValidate = inputValues => {
-    const errors = {}
+interface FormValidateProps {
+    username?: string;
+    email: string;
+    password: string;
+    password2?: string;
+}
+
+interface ErrorsData {
+    name?: string;
+    email: string;
+    password: string;
+    password2?: string;
+}
+
+const FormValidate = (inputValues: FormValidateProps) => {
+    const errors = {} as ErrorsData;
 
     
     if(!inputValues.username){
@@ -17,7 +31,7 @@ const FormValidate = inputValues => {
     if(!inputValues.password) {
         errors.password = 'Enter a password';
     } else if(inputValues.password.length < 6){
-        errors.passsword = 'Enter a password with mininum 6 characters';
+        errors.password = 'Enter a password with mininum 6 characters';
     }
 
     if(!inputValues.password2){

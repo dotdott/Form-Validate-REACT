@@ -5,6 +5,16 @@ import { AccountContext } from './contexts/AccountContext';
 
 import FormValidate from './FormValidate';
 
+
+interface ErrorsPropsData {
+    email?: string;
+    password?: string;
+    password2?: string;
+    notFound?: string;
+    wrongPass?: string;
+    requestLimit?: string;
+}
+
 export default function SignIn() {
     const { SignIn, user } = useContext(AccountContext);
 
@@ -13,11 +23,11 @@ export default function SignIn() {
         password: ''
     });
 
-    const [errors, setErrors] = useState({});
-    
+    const [errors, setErrors] = useState<ErrorsPropsData>({} as ErrorsPropsData);
+
     const history = useHistory();
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         try {
@@ -47,7 +57,7 @@ export default function SignIn() {
         }  
     }
 
-    const handleChanges = e => {
+    const handleChanges = (e: {target: HTMLInputElement}) => {
         const {name, value} = e.target;
 
         setInputValues({

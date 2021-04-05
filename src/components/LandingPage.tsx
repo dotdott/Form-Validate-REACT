@@ -19,7 +19,7 @@ export default function LandingPage() {
 
             <div className="form-container">
                 <p className="greetings">
-                    Hello, {user.displayName}.
+                    Hello, {user?.displayName}.
                 </p>
 
                 <button onClick={Logout}>Logout</button>

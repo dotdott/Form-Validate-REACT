@@ -3,7 +3,14 @@
 
 ### About it
 - Build with React.
-- Use of hooks ***useState***.
-- All fields needs to be filled correctly, with a ***username***, well formated ***email***, ***passwords*** minimum length of 8 and both matching.
-- Checkbox confirming that users allows terms of use.
-- Sucess message when all procedures were made correctly and submitted.
+- Firebase Authentication /email-password/
+- React Router to pagination to login/signup & homepage
+- Private route, preventing a already logged in user to acess the login page & unloggeded users can't acess main page.
+- Form input validation, checking e-mail, passwords & if there's already an account with thoses logins
+- Modal to send a sucess message when user register sucessfuly.
+
+
+## Techs
+- React.
+- React Router.
+- Firebase.

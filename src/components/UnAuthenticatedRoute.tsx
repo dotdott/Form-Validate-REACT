@@ -1,10 +1,17 @@
 import React, { useContext } from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, RouteProps  } from 'react-router-dom'
 import { AccountContext } from './contexts/AccountContext'
 import * as ROUTES from './constants/routes';
 
+interface RoutesProps extends RouteProps {
+    exact?: true;
+    path: string;
+    component: React.FC;
+} ;
 
-export function PrivateLogin({ component: Component, ...rest }){
+export const PrivateLogin: React.FC<RoutesProps > = ({ component: Component, ...rest }: {
+    component: React.ComponentType<RouteProps>
+}) => {
     const { currentUser } = useContext(AccountContext)
 
     return (
@@ -18,7 +25,9 @@ export function PrivateLogin({ component: Component, ...rest }){
     )
 }
 
-export default function PrivateRoute({ component: Component, ...rest }) {
+const PrivateRoute: React.FC<RoutesProps> = ({ component: Component, ...rest }: {
+    component: React.ComponentType<RouteProps> 
+}) => {
     const { currentUser } = useContext(AccountContext)
 
     return (
@@ -31,3 +40,5 @@ export default function PrivateRoute({ component: Component, ...rest }) {
        />
     )
 }
+
+export default PrivateRoute;
